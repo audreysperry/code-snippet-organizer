@@ -29,10 +29,12 @@ module.exports = function(app) {
   }));
   userRouter.get('/signup', UserController.signup);
   userRouter.post('/signup', passport.authenticate('local-signup', {
-    successRedirect: '/code',
+    successRedirect: '/login',
     failureRedirect: '/signup',
     failureFlash: true
   }));
+
+  userRouter.get('/logout', UserController.logout);
 
 
 
@@ -41,6 +43,10 @@ homeRouter.get('/', HomeController.home);
 codeRouter.get('/', CodeController.list);
 codeRouter.get('/form/', CodeController.form);
 codeRouter.post('/add', CodeController.add);
+codeRouter.get('/:id/delete', CodeController.delete);
+codeRouter.get('/:id/update', CodeController.updateForm);
+codeRouter.post('/update/', CodeController.update);
+codeRouter.post('/view/', CodeController.view);
 
 app.use('/', homeRouter);
 app.use('/', userRouter);

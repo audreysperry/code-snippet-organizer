@@ -1,0 +1,16 @@
+
+
+<div class="well">
+  <form class="d-flex flex-column justify-content-center sweater-form" action="/code/update" method="post">
+    <h2>Update Your Snippet</h2>
+    <input type="hidden" name="id" value="{{_id}}">
+    <input type="text" name="title" required value="{{title}}">
+    <input type="textarea" name="body" required value="{{body}}">
+    <input type="text" name="notes" value="{{notes}}">
+    <input type="text" name="language" required value="{{language}}">
+
+    <input type="text" name="tag" value="{{tags}}">
+    <input class="btn btn-primary" type="submit" name="" value="Update Code Snippet">
+
+  </form>
+</div>

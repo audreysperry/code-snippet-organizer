@@ -9,6 +9,11 @@ var User = {
     res.render('users/signup', {
       messages: res.locals.getMessages()
     });
+  },
+
+  logout: function(req, res) {
+    req.logout();
+    res.render('home');
   }
 
 };

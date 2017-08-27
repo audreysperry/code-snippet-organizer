@@ -5,16 +5,37 @@
 
 <br><br>
 
-<ul class="list-group">
+<a href="/logout/" class ="btn">Logout</a>
+
+<form class="view" action="code/view" method="post">
+  <h2>Sort by Language</h2>
+  <select class="custom-select">
+    <option name="search" selected>Select Language</option>
+    <option name="fun" value="Good Option">Good Option</option> 
+    {{#each code}}
+    <option type="text" name="search">Language: {{language}}</option>
+    {{#each tags}}
+    <option type ="text" name="search">Tag: {{this}}</option>
+    {{/each}}
+    {{/each}}
+  </select>
+  <input type="submit" name="" value="View">
+</form>
+
+
+<h2>Code Snippets: </h2>
+<div class="d-flex flex-row">
+
+
   {{#each code}}
-    <li class="list-group-item clearfix">
-      {{title}}
-      {{body}}
-      {{language}}
-      <span class="pull-right">
-        <a href="/code/{{_id}}/edit/" class="btn btn-primary">Edit</a>
-        <a href="/code/{{_id}}/delete/" class="btn btn-danger">Delete</a>
-      </span>
-    </li>
+    <ul class="code-list">
+      <li class="code-name">{{title}}</li>
+      <li>Code: {{body}}</li>
+      <li>Notes: {{notes}}</li>
+      <li>Language: {{language}}</li>
+      <li>Tags: {{tags}}</li>
+      <li><a class="btn btn-danger delete-button" href="/code/{{_id}}/delete">Delete Code Snippet</a></li>
+      <li><a class="btn btn-info update-button" href="/code/{{_id}}/update">Update Code Snippet</a></li>
+    </ul>
   {{/each}}
-</ul>
+</div>

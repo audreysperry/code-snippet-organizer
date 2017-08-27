@@ -2,11 +2,12 @@ const mongoose = require('mongoose');
 
 
 var codeSchema = new mongoose.Schema({
-  title: {type: String, required: true},
-  body: {type: String, required: true},
-  Notes: {type: String},
-  Language: {type: String, required: true},
-  tags: [String]
+  title: {type: String},
+  body: {type: String},
+  notes: {type: String},
+  language: {type: String},
+  tags: [String],
+  userId: String
 
 
 });

@@ -25,7 +25,8 @@ app.use('/static', express.static('public'));
 // passport user auth config
 
 passport.use('local-login', new LocalStrategy(
-  function(username, password, done) {
+  {passReqToCallback: true},
+  function(req, username, password, done) {
     User.authenticate(username, password, function(err, user) {
       if (err) {
         return done(err)
@@ -41,9 +42,8 @@ passport.use('local-login', new LocalStrategy(
   }));
 
 passport.use('local-signup', new LocalStrategy(
-  function(username, password, done) {
-    console.log('local-signup');
-    console.log(username, password);
+  {passReqToCallback: true},
+  function(req, username, password, done) {
     User.signup(username, password, function(err, user) {
       if (err) {
         return done(err)
@@ -94,7 +94,7 @@ mongoose.connect(database);
 //   app.listen(process.env.PORT || 3000);
 // });
 
-app.listen(3000);
+app.listen(process.env.PORT || 3000);
 
 
 
