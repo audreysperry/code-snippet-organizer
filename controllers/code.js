@@ -6,9 +6,12 @@ var CodeController = {
     userId = req.user.id;
     console.log(userId);
 
-    Code.find({userId: userId}).then(function(snippets) {
+    Code.find({
+      userId: userId
+    }).then(function(snippets, userId) {
       res.render('code/list', {
-        code: snippets
+        code: snippets,
+        id: userId
       })
     });
   },
@@ -16,9 +19,11 @@ var CodeController = {
 
   form: function(req, res) {
     let userId = req.user.id;
-    User.findOne({_id: userId}).then(function(user) {
-          res.render('code/form', user);
-          return;
+    User.findOne({
+      _id: userId
+    }).then(function(user) {
+      res.render('code/form', user);
+      return;
     });
 
 
@@ -27,7 +32,7 @@ var CodeController = {
   updateForm: function(req, res) {
     let codeId = req.params.id;
 
-    Code.findById(codeId).then(function(code){
+    Code.findById(codeId).then(function(code) {
       res.render('code/updateForm', code);
     });
   },
@@ -59,7 +64,9 @@ var CodeController = {
     let codeId = req.params.id;
     console.log(codeId);
 
-    Code.deleteOne({"_id": codeId}).then(function(){
+    Code.deleteOne({
+      "_id": codeId
+    }).then(function() {
       res.redirect('/code');
 
     })
@@ -74,25 +81,59 @@ var CodeController = {
     let tagsArray = tagsString.split(',');
     let language = req.body.language;
 
-    console.log(title);
-
-    Code.findByIdAndUpdate(codeId, {$set: {title: title, body: body, notes: notes, langauge: language, tags: tagsArray}}).then(function(){
+    Code.findByIdAndUpdate(codeId, {
+      $set: {
+        title: title,
+        body: body,
+        notes: notes,
+        langauge: language,
+        tags: tagsArray
+      }
+    }).then(function() {
       res.redirect('/code/');
     });
   },
 
 
   view: function(req, res) {
-    console.log(req.body);
-    let fun = req.body.fun;
-    console.log(fun);
+    let userId = req.body.id;
     let search = req.body.search;
     languageSearch = false;
 
-    // if (search.includes("Language: ")){
-    //   languageSearch = true;
-    // }
-    // Code.find()
+    if (search.includes("Language: ")) {
+      languageSearch = true;
+      search = search.slice(10);
+    } else {
+      search = search.slice(5);
+    }
+
+    if (languageSearch) {
+      Code.find({
+        $and: [{
+            userId: userId
+          },
+          {
+            language: search
+          }
+        ]
+      }).then(function(code) {
+        res.render('code/codeFilter', {snippets: code});
+      })
+    } else {
+      Code.find({
+        $and: [{
+            userId: userId
+          },
+          {
+            tags: {
+              $in: [search]
+            }
+          }
+        ]
+      }).then(function(code) {
+        res.render('code/codeFilter', {snippets: code});
+      })
+    }
   }
 
 };

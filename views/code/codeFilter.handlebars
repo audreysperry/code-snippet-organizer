@@ -1,0 +1,11 @@
+{{#each snippets}}
+  <ul class="code-list">
+    <li class="code-name">{{title}}</li>
+    <li>Code: {{body}}</li>
+    <li>Notes: {{notes}}</li>
+    <li>Language: {{language}}</li>
+    <li>Tags: {{tags}}</li>
+    <li><a class="btn btn-danger delete-button" href="/code/{{_id}}/delete">Delete Code Snippet</a></li>
+    <li><a class="btn btn-info update-button" href="/code/{{_id}}/update">Update Code Snippet</a></li>
+  </ul>
+{{/each}}

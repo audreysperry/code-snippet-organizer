@@ -9,13 +9,13 @@
 
 <form class="view" action="code/view" method="post">
   <h2>Sort by Language</h2>
-  <select class="custom-select">
-    <option name="search" selected>Select Language</option>
-    <option name="fun" value="Good Option">Good Option</option> 
+  <input type="hidden" name="id" value="{{_id}}">
+  <select name="search" class="custom-select">
+    <option  selected>Select Language</option>
     {{#each code}}
-    <option type="text" name="search">Language: {{language}}</option>
+    <option type="text" >Language: {{language}}</option>
     {{#each tags}}
-    <option type ="text" name="search">Tag: {{this}}</option>
+    <option type ="text">Tag: {{this}}</option>
     {{/each}}
     {{/each}}
   </select>
