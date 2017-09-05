@@ -6,7 +6,7 @@ var codeSchema = new mongoose.Schema({
   body: {type: String},
   notes: {type: String},
   language: {type: String},
-  tags: [String],
+  tags: [{type: String, trim: true}],
   userId: String
 
 

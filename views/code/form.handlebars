@@ -3,9 +3,10 @@
 <div class="well">
   <form class="d-flex flex-column justify-content-center sweater-form" action="/code/add" method="post">
     <h2>Add a Code Snippet</h2>
-    <input type="hidden" name="id" value="{{_id}}">
     <input type="text" name="title" required placeholder="Code Snippet Title">
-    <input type="textarea" name="body" required placeholder="Type your code here">
+      <textarea type="textarea" name="body" required placeholder="Type your code here"></textarea>
+
+
     <input type="text" name="notes" placeholder="Enter notes here(optional)">
     <input type="text" name="language" required placeholder="Enter language">
 

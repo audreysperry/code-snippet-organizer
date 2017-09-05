@@ -46,7 +46,8 @@ codeRouter.post('/add', CodeController.add);
 codeRouter.get('/:id/delete', CodeController.delete);
 codeRouter.get('/:id/update', CodeController.updateForm);
 codeRouter.post('/update/', CodeController.update);
-codeRouter.post('/view/', CodeController.view);
+codeRouter.post('/lang/', CodeController.langsearch);
+codeRouter.post('/tag/', CodeController.tagsearch);
 
 app.use('/', homeRouter);
 app.use('/', userRouter);

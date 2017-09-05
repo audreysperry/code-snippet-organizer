@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "author": "Audrey",
   "license": "ISC",
@@ -20,5 +20,12 @@
     "mongoose": "^4.11.8",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "jest": "^20.0.4",
+    "supertest": "^3.0.0"
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }

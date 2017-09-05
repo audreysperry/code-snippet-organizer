@@ -4,14 +4,13 @@ const User = require('../models/user');
 var CodeController = {
   list: function(req, res) {
     userId = req.user.id;
-    console.log(userId);
 
     Code.find({
       userId: userId
-    }).then(function(snippets, userId) {
+    }).then(function(snippets) {
+
       res.render('code/list', {
         code: snippets,
-        id: userId
       })
     });
   },
@@ -38,8 +37,7 @@ var CodeController = {
   },
 
   add: function(req, res) {
-    var userId = req.body.id;
-    console.log(userId);
+    var userId = req.user.id;
     var title = req.body.title;
     var body = req.body.body;
     var notes = req.body.notes;
@@ -62,9 +60,9 @@ var CodeController = {
 
   delete: function(req, res) {
     let codeId = req.params.id;
-    console.log(codeId);
 
     Code.deleteOne({
+      "userId": req.user.id,
       "_id": codeId
     }).then(function() {
       res.redirect('/code');
@@ -94,47 +92,88 @@ var CodeController = {
     });
   },
 
+  langsearch: function(req, res) {
+    let userId = req.user.id;
+    let search = req.body.languagesearch;
+    console.log(search);
 
-  view: function(req, res) {
-    let userId = req.body.id;
-    let search = req.body.search;
-    languageSearch = false;
+    Code.find({
+      $and: [{
+          userId: userId
+        },
+        {
+          language: search
+        }
+      ]
+    }).then(function(code) {
+      res.render('code/codeFilter', {
+        snippets: code
+      });
+    })
+  },
 
-    if (search.includes("Language: ")) {
-      languageSearch = true;
-      search = search.slice(10);
-    } else {
-      search = search.slice(5);
-    }
+  tagsearch: function(req, res) {
+    let userId = req.user.id;
+    let search = req.body.tagsearch;
 
-    if (languageSearch) {
-      Code.find({
-        $and: [{
-            userId: userId
-          },
-          {
-            language: search
+
+    Code.find({
+      $and: [{
+          userId: userId
+        },
+        {
+          tags: {
+            $in: [search]
           }
-        ]
-      }).then(function(code) {
-        res.render('code/codeFilter', {snippets: code});
-      })
-    } else {
-      Code.find({
-        $and: [{
-            userId: userId
-          },
-          {
-            tags: {
-              $in: [search]
-            }
-          }
-        ]
-      }).then(function(code) {
-        res.render('code/codeFilter', {snippets: code});
-      })
-    }
-  }
+        }
+      ]
+    }).then(function(code) {
+      res.render('code/codeFilter', {
+        snippets: code
+      });
+    })
+  },
+  // view: function(req, res) {
+  //   let userId = req.user.id;
+  //   let search = req.body.search;
+  //   languageSearch = false;
+  //
+  //   if (search.includes("Language: ")) {
+  //     languageSearch = true;
+  //     search = search.slice(10);
+  //   } else {
+  //     search = search.slice(5);
+  //     console.log(search);
+  //   }
+  //
+  //   if (languageSearch) {
+  //     Code.find({
+  //       $and: [{
+  //           userId: userId
+  //         },
+  //         {
+  //           language: search
+  //         }
+  //       ]
+  //     }).then(function(code) {
+  //       res.render('code/codeFilter', {snippets: code});
+  //     })
+  //   } else {
+  //     Code.find({
+  //       $and: [{
+  //           userId: userId
+  //         },
+  //         {
+  //           tags: {
+  //             $in: [search]
+  //           }
+  //         }
+  //       ]
+  //     }).then(function(code) {
+  //       res.render('code/codeFilter', {snippets: code});
+  //     })
+  //   }
+  // }
 
 };
 module.exports = CodeController;

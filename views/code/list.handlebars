@@ -7,9 +7,21 @@
 
 <a href="/logout/" class ="btn">Logout</a>
 
-<form class="view" action="code/view" method="post">
-  <h2>Sort by Language</h2>
-  <input type="hidden" name="id" value="{{_id}}">
+
+<form class="" action="/code/lang" method="post">
+  <h4>Search by Language</h4>
+  <input type="text" name="languagesearch" value="">
+  <input type="submit" class="btn btn-primary" value="Search">
+</form>
+
+<form class="" action="/code/tag" method="post">
+  <h4>Search by Tag</h4>
+  <input type="text" name="tagsearch" value="">
+  <input type="submit" class="btn btn-primary" value="Search">
+</form>
+<!-- <form class="view" action="/code/view" method="post">
+  <h2>Sort by Language or Tag</h2>
+  <input type="hidden" name="id" value="{{code.userId}}">
   <select name="search" class="custom-select">
     <option  selected>Select Language</option>
     {{#each code}}
@@ -20,7 +32,7 @@
     {{/each}}
   </select>
   <input type="submit" name="" value="View">
-</form>
+</form> -->
 
 
 <h2>Code Snippets: </h2>

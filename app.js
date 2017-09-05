@@ -88,7 +88,7 @@ app.use(flash());
 routes(app);
 
 var database = process.env.MONGODB_URI || 'mongodb://localhost:27017/codedb';
-//connect to the database and start teh server once the connectionis made
+//connect to the database and start the server once the connectionis made
 mongoose.connect(database);
 // mongo.connect(database, () => {
 //   app.listen(process.env.PORT || 3000);
