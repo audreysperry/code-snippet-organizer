@@ -11,14 +11,14 @@ tags -- that is, user-defined words or phrases that classify the code, like "aut
 
 The application must:
 
-have a comprehensive set of tests for all controllers and models
-have registration and login
-allow you to create a snippet
-allow you to see a list of all your snippets
-allow you to see a list of all your snippets for a specific language
-allow you to see a list of all your snippets for a specific tag
-allow you to look at an individual snippet
-have an API to allow for creating and viewing of snippets as listed above
+-Have a comprehensive set of tests for all controllers and models
+-Have registration and login
+-Allow you to create a snippet
+-Allow you to see a list of all your snippets
+-Allow you to see a list of all your snippets for a specific language
+-Allow you to see a list of all your snippets for a specific tag
+-Allow you to look at an individual snippet
+-Have an API to allow for creating and viewing of snippets as listed above
 
 
 ## Deployed Demo Link
