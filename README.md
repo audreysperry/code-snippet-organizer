@@ -1,7 +1,7 @@
 # Use Express and Mongoose to create an application that organizes code snippets that you save for later use.
 
 
-Snippets have:
+####Snippets have:
 
 -A title,
 
@@ -13,7 +13,7 @@ Snippets have:
 
 -Tags -- that is, user-defined words or phrases that classify the code, like "authentication", "front-end", "middleware", or "database".
 
-The application must:
+####The application must:
 
 -Have a comprehensive set of tests for all controllers and models,
 
