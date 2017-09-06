@@ -1,4 +1,4 @@
-# Use Express and Mongoose to create an application that organizes code snippets that you save for later use.
+## Use Express and Mongoose to create an application that organizes code snippets that you save for later use.
 
 
 #### Snippets have:
